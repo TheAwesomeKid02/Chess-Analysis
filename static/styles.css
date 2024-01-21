@@ -1,0 +1,16 @@
+body {
+	width: 100vw;
+	height: 100vh;
+}
+
+#FEN {
+	padding: 25px 50px;
+	border-radius: 40px;
+	font-family: cursive;
+	transition: .25s;
+}
+
+#FEN:hover {
+	border-radius: 80px;
+	transition: .25s;
+}
