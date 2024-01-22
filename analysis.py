@@ -13,69 +13,69 @@ UNIONNOK = [0] * 64
 UNIONK = [0] * 64
 legalMoves = []
 def conversion():
-		for char in FENnotation:
-			FENCHANGE.append(char)
-
-		for index, item in enumerate(FENCHANGE):
-      while tempvar > 0:
-        if tempvar > 0:
-          tempvar = tempvar-1
-				if item == 'r' and tempvar <= 0:
-						ROOKS[index] = 5
-						UNIONNOK[index] = 5
-						UNIONK[index] = 5
-				elif item == 'R' and tempvar <= 0:
-						ROOKS[index] = -5
-						UNIONNOK[index] = -5
-						UNIONK[index] = -5
-				elif item == 'n' and tempvar <= 0:
-						KNIGHTS[index] = 3
-						UNIONNOK[index] = 3
-						UNIONK[index] = 3
-				elif item == 'N' and tempvar <= 0:
-						KNIGHTS[index] = -3
-						UNIONNOK[index] = -3
-						UNIONK[index] = -3
-				elif item == 'b' and tempvar <= 0:
-						BISHOPS[index] = 4
-						UNIONNOK[index] = 4
-						UNIONK[index] = 4
-				elif item == 'B' and tempvar <= 0:
-						BISHOPS[index] = -4
-						UNIONNOK[index] = -4
-						UNIONK[index] = -4
-				elif item == 'p' and tempvar <= 0:
-						PAWNS[index] = 1
-						UNIONNOK[index] = 1
-						UNIONK[index] = 1
-				elif item == 'P' and tempvar <= 0:
-						PAWNS[index] = -1
-						UNIONNOK[index] = -1
-						UNIONK[index] = -1
-				elif item == 'k' and tempvar <= 0:
-						KINGS[index] = 127
-						UNIONK[index] = 127
-				elif item == 'K' and tempvar <= 0:
-						KINGS[index] = -127 
-						UNIONK[index] = -127
-				elif item == 'q' and tempvar <= 0:
-						QUEENS[index] = 9
-						UNIONNOK[index] = 9
-						UNIONK[index] = 9
-				elif item == 'Q' and tempvar <= 0:
-						QUEENS[index] = -9
-						UNIONNOK[index] = -9
-						UNIONK[index] = -9
-        elif isnumeric(item) == True:
-            for v in range(int(item)+1):
-                PAWNS[index+v-1] = 0
-                QUEENS[index+v-1] = 0
-                KINGS[index+v-1] = 0
-                BISHOPS[index+v-1] = 0
-                ROOKS[index+v-1] = 0
-                UNIONK[index+v-1] = 0
-                UNIONNOK[index+v-1] = 0
-                tempvar = item
+	for char in FENnotation:
+		FENCHANGE.append(char)
+	
+	for index, item in enumerate(FENCHANGE):
+		while tempvar > 0:
+			if tempvar > 0:
+				tempvar = tempvar-1
+			if item == 'r' and tempvar <= 0:
+					ROOKS[index] = 5
+					UNIONNOK[index] = 5
+					UNIONK[index] = 5
+			elif item == 'R' and tempvar <= 0:
+					ROOKS[index] = -5
+					UNIONNOK[index] = -5
+					UNIONK[index] = -5
+			elif item == 'n' and tempvar <= 0:
+					KNIGHTS[index] = 3
+					UNIONNOK[index] = 3
+					UNIONK[index] = 3
+			elif item == 'N' and tempvar <= 0:
+					KNIGHTS[index] = -3
+					UNIONNOK[index] = -3
+					UNIONK[index] = -3
+			elif item == 'b' and tempvar <= 0:
+					BISHOPS[index] = 4
+					UNIONNOK[index] = 4
+					UNIONK[index] = 4
+			elif item == 'B' and tempvar <= 0:
+					BISHOPS[index] = -4
+					UNIONNOK[index] = -4
+					UNIONK[index] = -4
+			elif item == 'p' and tempvar <= 0:
+					PAWNS[index] = 1
+					UNIONNOK[index] = 1
+					UNIONK[index] = 1
+			elif item == 'P' and tempvar <= 0:
+					PAWNS[index] = -1
+					UNIONNOK[index] = -1
+					UNIONK[index] = -1
+			elif item == 'k' and tempvar <= 0:
+					KINGS[index] = 127
+					UNIONK[index] = 127
+			elif item == 'K' and tempvar <= 0:
+					KINGS[index] = -127 
+					UNIONK[index] = -127
+			elif item == 'q' and tempvar <= 0:
+					QUEENS[index] = 9
+					UNIONNOK[index] = 9
+					UNIONK[index] = 9
+			elif item == 'Q' and tempvar <= 0:
+					QUEENS[index] = -9
+					UNIONNOK[index] = -9
+					UNIONK[index] = -9
+			elif isnumeric(item) == True:
+					for v in range(int(item)+1):
+							PAWNS[index+v-1] = 0
+							QUEENS[index+v-1] = 0
+							KINGS[index+v-1] = 0
+							BISHOPS[index+v-1] = 0
+							ROOKS[index+v-1] = 0
+							UNIONK[index+v-1] = 0
+							UNIONNOK[index+v-1] = 0
+							tempvar = item
 
 def findLegal():
 	for i in PAWNS :
