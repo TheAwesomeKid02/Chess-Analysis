@@ -12,9 +12,8 @@
 	<h2>Enter the FEN you want here:</h2>
 	<form action="/" method="POST">
 		<textarea name="FEN" id="FEN" cols="30" rows="10" placeholder="FEN"></textarea>
-		<button type="submit" id="FEN_btn">Submit FEN</button>
+		<button type="submit" id="FEN_btn"><a href="analyzer_page.html">Submit FEN</a></button>
 	</form>
-	<p>{{ fen }}</p>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 	<script>
 		//all this script does is create a loading screen when the button is pressed.
@@ -49,6 +48,5 @@
 			animate();
 		})
 	</script>
-	<script src="chess_table.js"></script>
 </body>
 </html>
