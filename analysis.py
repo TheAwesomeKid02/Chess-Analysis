@@ -76,7 +76,8 @@ def conversion():
 							UNIONK[index+v-1] = 0
 							UNIONNOK[index+v-1] = 0
 							tempvar = item
-
+      if tempvar < 0:
+        tempvar = tempvar+1
 def findLegal():
 	for i in PAWNS :
 		if  PAWNS[i] == 1 :
