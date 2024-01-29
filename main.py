@@ -1,17 +1,10 @@
 from flask import Flask, render_template, request
 import os
-import socket
+
+posted = False
 
 full_path = os.path.realpath(__file__)
 print(full_path + "\n")
-
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.bind(('', int(os.environ['PORT'])))
-
-s.listen(1)
-
-c, addr = s.accept()
-
 app = Flask(__name__, template_folder='front_end', static_folder='static')
 
 # Index page
@@ -26,7 +19,7 @@ def analyzer_page():
 @app.route('/', methods=["POST"])
 def index_post():
 	FEN = request.form['FEN']
-	c.send(FEN.encode())
+	posted = True
 	return render_template('analyzer_page.html', fen=FEN)
 
 if __name__ == '__main__':

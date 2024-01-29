@@ -1,3 +1,5 @@
+from main import posted
+
 FEN = 
 turn = 
 FENCHANGE = []
@@ -14,18 +16,7 @@ tempvar = 0
 eval = 0
 modified_string = ''.join([char for char in FEN])
 import re
-import socket
 import os
-
-full_path = os.path.realpath(__file__)
-print(full_path + "\n")
-
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.bind(('', int(os.environ['PORT'])))
-
-s.listen(1)
-
-c, addr = s.accept()
 def conversion():
   global modified_string
   for char in modified_string:
@@ -129,3 +120,8 @@ evaluate()
 # print(legalMoves)
 
 print("CONNECTION FROM: ", str(addr))
+
+while not posted:
+	###
+else:
+	###
