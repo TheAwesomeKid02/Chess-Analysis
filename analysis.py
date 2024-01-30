@@ -1,7 +1,9 @@
 from main import posted
 
-FEN = 
-turn = 
+reacted = False
+
+FEN = None
+turn = None
 FENCHANGE = []
 PAWNS = [0] * 64
 KNIGHTS = [0] * 64
@@ -123,5 +125,6 @@ print("CONNECTION FROM: ", str(addr))
 
 while not posted:
 	###
+	pass
 else:
-	###
+	reacted = True

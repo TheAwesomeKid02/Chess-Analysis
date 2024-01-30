@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import os
+from analysis import reacted
 
 posted = False
 
@@ -25,3 +26,9 @@ def index_post():
 if __name__ == '__main__':
 		# Run the Flask app
 		app.run(host='0.0.0.0', debug=True, port=int(os.environ['PORT']))
+
+while not reacted:
+	###
+	pass
+else:
+	print("REACTED")
