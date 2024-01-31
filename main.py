@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request
 import os
-from analysis import reacted
+import math
 
-posted = False
+import analysis
+
 
 full_path = os.path.realpath(__file__)
 print(full_path + "\n")
@@ -20,15 +21,13 @@ def analyzer_page():
 @app.route('/', methods=["POST"])
 def index_post():
 	FEN = request.form['FEN']
-	posted = True
-	return render_template('analyzer_page.html', fen=FEN)
+	turn = request.form['turn']
+
+	eval = analysis.conversion(FEN)
+	legalMoves = analysis.findLegal(turn)
+
+	return render_template('analyzer_page.html', fen=FEN, turn=turn, evaluation=eval, legalMoves=legalMoves)
 
 if __name__ == '__main__':
 		# Run the Flask app
 		app.run(host='0.0.0.0', debug=True, port=int(os.environ['PORT']))
-
-while not reacted:
-	###
-	pass
-else:
-	print("REACTED")

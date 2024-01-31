@@ -9,9 +9,11 @@
 </head>
 <body>
 	<h1>Chess Analysis</h1>
-	<h2>Enter the FEN you want here:</h2>
+	<h2>Enter the FEN and player turn</h2>
+	<h4>Note: Write "W" if it is white's turn to play or write "B" if it is black's turn to play.</h4>
 	<form action="/" method="POST">
 		<textarea name="FEN" id="FEN" cols="30" rows="10" placeholder="FEN"></textarea>
+		<textarea name="turn" id="turn" cols="10" rows="5" placeholder="Turn"></textarea>
 		<button type="submit" id="FEN_btn">Submit FEN</button>
 	</form>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
