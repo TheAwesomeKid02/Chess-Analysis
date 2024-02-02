@@ -94,7 +94,7 @@ def empty(squarenum):
 		return True
 def findLegal(turn):
 	for i in range(0, len(PAWNS)-1, 1): 
-		if turn == 'w':
+		if turn.lower() == 'w':
 			if PAWNS[i] > 0:
 				if empty(i-8):
 					legalMoves.append('p'+str(i-7))
@@ -104,7 +104,7 @@ def findLegal(turn):
 					legalMoves.append('p'+str(i-8))
 				if i//8 == 6 and empty(i-8) and empty(i-16):
 					legalMoves.append('p'+str(i-15))
-		elif turn == 'b':
+		elif turn.lower() == 'b':
 			if PAWNS[i] < 0:
 				if empty(i-8):
 					legalMoves.append('P'+str(i+9))
@@ -116,21 +116,21 @@ def findLegal(turn):
 					legalMoves.append('p'+str(i+17))
 	for i in range(len(KNIGHTS)):
 		file_i = i % 8  
-		if turn == 'w':
+		if turn.lower() == 'w':
 			if KNIGHTS[i] > 0:
 				possible_moves = [
 					i - 17, i - 15, i - 10, i - 6, i + 6, i + 10, i + 15, i + 17
 				]
 				legalMoves.extend(['n' + str(move+1) for move in possible_moves if 0 < move < 64 and empty_white(move) and abs(move % 8 - file_i) <= 2])
 
-		elif turn == 'b':
+		elif turn.lower() == 'b':
 			if KNIGHTS[i] < 0:
 				possible_moves = [
 					i - 17, i - 15, i - 10, i - 6, i + 6, i + 10, i + 15, i + 17
 				 ]
 				legalMoves.extend(['N' + str(move+1) for move in possible_moves if 0 < move < 64 and empty_black(move) and abs(move % 8 - file_i) <= 2])
 	for i in range(len(BISHOPS)):
-		if turn == 'w':
+		if turn.lower() == 'w':
 			possible_moves = [ i-9, i-18, i-27, i-36, i-45, i-54, i-63, i+9, i+18, i+27, i+36, i+45, i+54, i+63]
 			for j in range(1,len(possible_moves)):
 				if empty_white(j):
