@@ -26,7 +26,7 @@ def index_post():
 	eval = analysis.conversion(FEN)
 	legalMoves = analysis.findLegal(turn)
 
-	return render_template('analyzer_page.html', fen=FEN, turn=turn, evaluation=eval, legalMoves=legalMoves)
+	return render_template('analyzer_page.html', fen=FEN, turn=turn, evaluation=analysis.evaluate(), legalMoves=legalMoves)
 
 if __name__ == '__main__':
 		# Run the Flask app
