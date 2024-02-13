@@ -19,7 +19,7 @@ def conversion(FEN):
 	global modified_string
 	modified_string = ''.join([char for char in FEN])
 	for char in modified_string:
-		FENCHANGE.append(char)
+			FENCHANGE.append(char)
 	modified_string= re.sub(r'(\d+)', lambda match: 'l' * int(match.group()), modified_string)
 	modified_string = modified_string.replace('/', '')
 	FENCHANGE.clear()
