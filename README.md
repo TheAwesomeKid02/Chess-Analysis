@@ -12,4 +12,4 @@ You are all set! If you have any questions or there are issues in the program, m
 
 <h3>NOTE: The available moves feature is temporarily not working. We are trying to fix this issue as soon as possible.</h3>
 
-<h2>Chess piece credits to <a href="https://commons.wikimedia.org/wiki/Category:PNG_chess_pieces/Standard_transparent">Wikimedia Commons</a> for the images of the Chess pieces. <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">Creative Commons License</a></h2>
+<h2>Chess piece credits to <a href="https://commons.wikimedia.org/wiki/Category:PNG_chess_pieces/Standard_transparent">Wikimedia Commons</a>. <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">Creative Commons License</a></h2>
