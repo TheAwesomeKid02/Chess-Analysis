@@ -60,11 +60,16 @@ body {
 } 
 
 .blackcell { 
-	background-color: black; 
+	background-color: #8f8fff; 
 	position: relative;
 } 
 
 .whitecell { 
 	background-color: #e6e6e6;
 	position: relative;
+}
+
+img {
+	position: absolute;
+	z-index: 1;
 }

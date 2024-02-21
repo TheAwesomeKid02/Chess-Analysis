@@ -113,20 +113,20 @@ function putPiece(color, piece, square) {
 
 function initialize() {
 		const squares = document.querySelectorAll('td');
-		squares.forEach(square => {
-				const pawn = document.createElement('img');
-				pawn.setAttribute('src', '/static/images/white/pawn.png');
-				pawn.style.position = 'absolute';
-				pawn.style.width = '100%';
-				pawn.style.height = '100%';
-			
-				const squareRect = square.getBoundingClientRect(); 
-				const squareCenterX = squareRect.left;
-				const squareCenterY = squareRect.top;
-				pawn.style.top = `${squareCenterY}px`; // Set the top position of the pawn to the y-coordinate of the center of the square
-				pawn.style.left = `${squareCenterX}px`; // Set the left position of the pawn to the x-coordinate of the center of the square
-				square.appendChild(pawn);
-		});
+		for (let i = 0; i < 8; i++) {
+			const pawn = document.createElement('img');
+			pawn.setAttribute('src', '/static/images/black/pawn.png');
+			pawn.style.position = 'absolute';
+			pawn.style.width = '100%';
+			pawn.style.height = '100%';
+
+			const squareRect = squares[i].getBoundingClientRect(); 
+			const squareCenterX = squareRect.left;
+			const squareCenterY = squareRect.top;
+			pawn.style.top = `${squareCenterY/2}px`; // Set the top position of the pawn to the y-coordinate of the center of the square
+			//pawn.style.left = `${squareCenterX}px`; // Set the left position of the pawn to the x-coordinate of the center of the square
+			squares[i].appendChild(pawn);
+		}
 }
 
 
