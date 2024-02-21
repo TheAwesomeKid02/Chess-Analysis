@@ -60,7 +60,7 @@ body {
 } 
 
 .blackcell { 
-	background-color: #8f8fff; 
+	background-color: green; 
 	position: relative;
 } 
 
@@ -70,6 +70,6 @@ body {
 }
 
 img {
-	position: absolute;
+	position: relative;
 	z-index: 1;
 }
