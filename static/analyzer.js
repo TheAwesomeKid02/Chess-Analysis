@@ -83,7 +83,6 @@ for (let i = 0; i < 8; i++) {
 				if ((i + j) % 2 == 0) { 
 					square.setAttribute('class', 'cell whitecell');
 					square.setAttribute('id', num);
-					square.style.position = 'relative';
 
 					board.appendChild(square);
 				} 
@@ -91,7 +90,6 @@ for (let i = 0; i < 8; i++) {
 					// Create a class attribute for all black cells 
 					square.setAttribute('class', 'cell blackcell'); 
 					square.setAttribute('id', num);
-					square.style.position = 'relative';
 
 					board.appendChild(square); 
 				} 
@@ -109,20 +107,27 @@ document.body.appendChild(center);
 
 function putPiece(color, piece, square) {
 	let chessmen = document.createElement('img');
-	chessmen.setAttribute('src', `front_end/images/${color}/${piece}/.png`);
+	chessmen.setAttribute('src', `/static/images/${color}/${piece}.png`);
 		
 }
 
 function initialize() {
-	for(let i = 0; i < 8; i++) {
-		let chessmen = document.creatElement('img');
-		chessmen.setAttribute('src', `front_end/images/white/pawn/.png`);
-
-		let top = 0.5 * (b2.height - chessmen.height);
-		let left = 0.5 * (b2.width - chessmen.width);
-
-		chessmen.style = 'top: top; left: left;';
-	}	
+		const squares = document.querySelectorAll('td');
+		squares.forEach(square => {
+				const pawn = document.createElement('img');
+				pawn.setAttribute('src', '/static/images/white/pawn.png');
+				pawn.style.position = 'absolute';
+				pawn.style.width = '100%';
+				pawn.style.height = '100%';
+			
+				const squareRect = square.getBoundingClientRect(); 
+				const squareCenterX = squareRect.left;
+				const squareCenterY = squareRect.top;
+				pawn.style.top = `${squareCenterY}px`; // Set the top position of the pawn to the y-coordinate of the center of the square
+				pawn.style.left = `${squareCenterX}px`; // Set the left position of the pawn to the x-coordinate of the center of the square
+				square.appendChild(pawn);
+		});
 }
 
-//intialize();
+
+initialize();
