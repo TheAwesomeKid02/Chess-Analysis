@@ -40,8 +40,9 @@ ChessTable.setAttribute('cellspacing', '0');
 ChessTable.setAttribute('width', '675px'); 
 document.body.appendChild(center);
 
+const squares = document.querySelectorAll('td');
+
 function addPiece(color, piece, square) {
-	let squares = document.querySelectorAll('td');
 	const chessmen = document.createElement('img');
 	chessmen.setAttribute('src', `/static/images/${color}/${piece}.png`);
 	chessmen.style.height = '100%';
@@ -51,7 +52,6 @@ function addPiece(color, piece, square) {
 }
 
 function initialize() {
-	let squares = document.querySelectorAll('td');
 	for(let i = 8; i < 16; i++) {
 		const pawn = document.createElement('img');
 		pawn.setAttribute('src', '/static/images/black/pawn.png');
