@@ -46,6 +46,7 @@ function addPiece(color, piece, square) {
 	chessmen.setAttribute('src', `/static/images/${color}/${piece}.png`);
 	chessmen.style.height = '100%';
 	chessmen.style.width = '100%';
+	chessmen.style = 'cursor: pointer;';
 	squares[square].appendChild(chessmen);
 }
 
@@ -56,6 +57,7 @@ function initialize() {
 		pawn.setAttribute('src', '/static/images/black/pawn.png');
 		pawn.style.height = '100%';
 		pawn.style.width = '100%';
+		pawn.style = 'cursor: pointer;';
 		squares[i].appendChild(pawn);
 	}
 	for(let i = 48; i < 56; i++) {
@@ -63,6 +65,7 @@ function initialize() {
 		pawn.setAttribute('src', '/static/images/white/pawn.png');
 		pawn.style.height = '100%';
 		pawn.style.width = '100%';
+		pawn.style = 'cursor: pointer;';
 		squares[i].appendChild(pawn);
 	}
 
