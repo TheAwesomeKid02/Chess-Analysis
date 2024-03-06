@@ -21,12 +21,10 @@ def analyzer_page():
 @app.route('/', methods=["POST"])
 def index_post():
 	FEN = request.form['FEN']
-	turn = request.form['turn']
 
 	eval = analysis.conversion(FEN)
-	legalMoves = analysis.findLegal(turn)
 
-	return render_template('analyzer_page.html', fen=FEN, turn=turn, evaluation=analysis.evaluate(), legalMoves=legalMoves)
+	return render_template('analyzer_page.html', fen=FEN, evaluation=analysis.evaluate())
 
 if __name__ == '__main__':
 		# Run the Flask app

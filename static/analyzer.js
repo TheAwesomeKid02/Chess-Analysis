@@ -1,4 +1,5 @@
 let center = document.createElement('center');
+let fen = document.getElementById('fen');
 
 let num = 1;
 
@@ -92,3 +93,7 @@ function initialize() {
 }
 
 initialize();
+
+if (!fen) {
+	alert("Hey, fella! There happens to be some crazy shenanigans going on here. Please input a proper FEN. Put your telephone away and take those white things out of your ears.");
+}
