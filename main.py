@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import os
+import re
 import math
 
 import analysis
@@ -21,10 +22,14 @@ def analyzer_page():
 @app.route('/', methods=["POST"])
 def index_post():
 	FEN = request.form['FEN']
+	FEN_new = re.sub(r'\s.*', '', FEN)
 
-	eval = analysis.conversion(FEN)
+	turn = FEN[len(FEN)+1:]
+	turn = re.sub(r'\s.*', '', turn)
+	eval = analysis.evaluate(FEN_new)
+	modified_string = ''.join([char for char in FEN])
 
-	return render_template('analyzer_page.html', fen=FEN, evaluation=analysis.evaluate())
+	return render_template('analyzer_page.html', fen=FEN_new, evaluation=eval)
 
 if __name__ == '__main__':
 		# Run the Flask app
