@@ -26,7 +26,7 @@ def index_post():
 
 	turn = FEN[len(FEN)+1:]
 	turn = re.sub(r'\s.*', '', turn)
-	eval = analysis.evaluate(FEN_new)
+	eval = analysis.returnconvert(FEN_new)
 	modified_string = ''.join([char for char in FEN])
 
 	return render_template('analyzer_page.html', fen=FEN_new, evaluation=eval)

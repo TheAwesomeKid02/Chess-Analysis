@@ -11,11 +11,10 @@ for (let i = 0; i < 8; i++) {
 		let board = document.createElement('tr'); 
 		for (let j = 0; j < 8; j++) { 
 
-				// Create a cell 
+				//create the cell
 				let square = document.createElement('td'); 
 
-				// If the sum of cell coordinates is even 
-				// then color the cell white 
+				//logic for square color
 				if ((i + j) % 2 == 0) { 
 					square.setAttribute('class', 'cell whitecell');
 					square.setAttribute('id', num);
@@ -23,7 +22,7 @@ for (let i = 0; i < 8; i++) {
 					board.appendChild(square);
 				} 
 				else { 
-					// Create a class attribute for all black cells 
+					//create black cells
 					square.setAttribute('class', 'cell blackcell'); 
 					square.setAttribute('id', num);
 
@@ -31,7 +30,6 @@ for (let i = 0; i < 8; i++) {
 				} 
 		} 
 
-		// Append the row 
 		ChessTable.appendChild(board); 
 } 
 center.appendChild(ChessTable);
@@ -94,6 +92,6 @@ function initialize() {
 
 initialize();
 
-if (!fen) {
+if (!fen.value) {
 	alert("Hey, fella! There happens to be some crazy shenanigans going on here. Please input a proper FEN. Put your telephone away and take those white things out of your ears.");
 }
