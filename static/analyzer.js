@@ -51,47 +51,54 @@ function addPiece(color, piece, square) {
 }
 
 function initialize() {
-	for(let i = 8; i < 16; i++) {
-		const pawn = document.createElement('img');
-		pawn.setAttribute('src', '/static/images/black/pawn.png');
-		pawn.style.height = '100%';
-		pawn.style.width = '100%';
-		pawn.style = 'cursor: pointer;';
-		squares[i].appendChild(pawn);
+	const position = document.getElementById('position');
+	let pos_string;
+	pos_string = position.textContent.replace(/\s/g, '').replace('[', '').replace(']', '');
+	console.log(pos_string);
+	let pos_array = pos_string.split(',').map(Number);
+	console.log(pos_array);
+
+	for(let i = 0; i < pos_array.length; i++) {
+		if(pos_array[i] != 0) {
+			if (Math.abs(pos_array[i]) == 9) {
+				if(pos_array[i] < 0) {
+					addPiece('black', 'queen', i);
+				} else {
+					addPiece('white', 'queen', i)
+				}
+			} else if (Math.abs(pos_array[i]) == 10) {
+					if(pos_array[i] < 0) {
+						addPiece('black', 'king', i);
+					} else {
+						addPiece('white', 'king', i)
+					}
+			} else if (Math.abs(pos_array[i]) == 3) {
+					if(pos_array[i] < 0) {
+						addPiece('black', 'knight', i);
+					} else {
+						addPiece('white', 'knight', i)
+					}
+			} else if (Math.abs(pos_array[i]) == 4) {
+					if(pos_array[i] < 0) {
+						addPiece('black', 'bishop', i);
+					} else {
+						addPiece('white', 'bishop', i)
+					}
+			} else if (Math.abs(pos_array[i]) == 1) {
+					if(pos_array[i] < 0) {
+						addPiece('black', 'pawn', i);
+					} else {
+						addPiece('white', 'pawn', i)
+					}
+			} else if (Math.abs(pos_array[i]) == 5) {
+					if(pos_array[i] < 0) {
+						addPiece('black', 'rook', i);
+					} else {
+						addPiece('white', 'rook', i)
+					}
+			}
+		}
 	}
-	for(let i = 48; i < 56; i++) {
-		const pawn = document.createElement('img');
-		pawn.setAttribute('src', '/static/images/white/pawn.png');
-		pawn.style.height = '100%';
-		pawn.style.width = '100%';
-		pawn.style = 'cursor: pointer;';
-		squares[i].appendChild(pawn);
-	}
-
-	//append the black pieces
-	addPiece('black', 'rook', 0);
-	addPiece('black', 'knight', 1);
-	addPiece('black', 'knight', 6);
-	addPiece('black', 'bishop', 2);
-	addPiece('black', 'bishop', 5);
-	addPiece('black', 'king', 4);
-	addPiece('black', 'queen', 3);
-	addPiece('black', 'rook', 7);
-
-
-	//append the white pieces
-	addPiece('white', 'rook', 56);
-	addPiece('white', 'knight', 57);
-	addPiece('white', 'knight', 62);
-	addPiece('white', 'bishop', 58);
-	addPiece('white', 'bishop', 61);
-	addPiece('white', 'king', 60);
-	addPiece('white', 'queen', 59);
-	addPiece('white', 'rook', 63);
 }
 
 initialize();
-
-if (!fen.value) {
-	alert("Hey, fella! There happens to be some crazy shenanigans going on here. Please input a proper FEN. Put your telephone away and take those white things out of your ears.");
-}

@@ -26,10 +26,11 @@ def index_post():
 
 	turn = FEN[len(FEN)+1:]
 	turn = re.sub(r'\s.*', '', turn)
-	eval = analysis.returnconvert(FEN_new)
+	position = analysis.returnconvert(FEN_new)
+	eval = analysis.evaluate(FEN_new)
 	modified_string = ''.join([char for char in FEN])
 
-	return render_template('analyzer_page.html', fen=FEN_new, evaluation=eval)
+	return render_template('analyzer.html', fen=FEN_new, evaluation=eval, pos=position)
 
 if __name__ == '__main__':
 		# Run the Flask app
