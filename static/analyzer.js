@@ -41,7 +41,7 @@ function addPiece(color, piece, square) {
 	chessmen.setAttribute('src', `/static/images/${color}/${piece}.png`);
 	chessmen.style.height = '100%';
 	chessmen.style.width = '100%';
-	chessmen.style = 'cursor: pointer;';
+	chessmen.style.cursor = 'pointer';
 	squares[square].appendChild(chessmen);
 }
 
