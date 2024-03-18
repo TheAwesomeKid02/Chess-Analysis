@@ -1,5 +1,6 @@
 let center = document.createElement('center');
 let fen = document.getElementById('fen');
+let eval = document.getElementById('eval');
 
 let num = 1;
 
@@ -70,37 +71,37 @@ function initialize() {
 				if(pos_array[i] < 0) {
 					addPiece('black', 'queen', i);
 				} else {
-					addPiece('white', 'queen', i)
+					addPiece('white', 'queen', i);
 				}
 			} else if (Math.abs(pos_array[i]) == 10) {
 					if(pos_array[i] < 0) {
 						addPiece('black', 'king', i);
 					} else {
-						addPiece('white', 'king', i)
+						addPiece('white', 'king', i);
 					}
 			} else if (Math.abs(pos_array[i]) == 3) {
 					if(pos_array[i] < 0) {
 						addPiece('black', 'knight', i);
 					} else {
-						addPiece('white', 'knight', i)
+						addPiece('white', 'knight', i);
 					}
 			} else if (Math.abs(pos_array[i]) == 4) {
 					if(pos_array[i] < 0) {
 						addPiece('black', 'bishop', i);
 					} else {
-						addPiece('white', 'bishop', i)
+						addPiece('white', 'bishop', i);
 					}
 			} else if (Math.abs(pos_array[i]) == 1) {
 					if(pos_array[i] < 0) {
 						addPiece('black', 'pawn', i);
 					} else {
-						addPiece('white', 'pawn', i)
+						addPiece('white', 'pawn', i);
 					}
 			} else if (Math.abs(pos_array[i]) == 5) {
 					if(pos_array[i] < 0) {
 						addPiece('black', 'rook', i);
 					} else {
-						addPiece('white', 'rook', i)
+						addPiece('white', 'rook', i);
 					}
 			}
 		}
@@ -109,3 +110,11 @@ function initialize() {
 
 //call the function
 initialize();
+
+if(parseInt(eval.textContent) > 0) {
+	eval.textContent = `White is winning by ${eval.textContent} points.`;
+} else if(parseInt(eval.textContent) < 0) {
+		eval.textContent = `Black is winning by ${Math.abs(parseInt(eval.textContent))} points.`;
+} else {
+		eval.textContent = 'Both white and black are equal.';
+}
