@@ -111,6 +111,8 @@ function initialize() {
 //call the function
 initialize();
 
+
+// Decides whether white or black is winning
 if(parseInt(eval.textContent) > 0) {
 	eval.textContent = `White is winning by ${eval.textContent} points.`;
 } else if(parseInt(eval.textContent) < 0) {
