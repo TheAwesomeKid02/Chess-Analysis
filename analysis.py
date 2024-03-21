@@ -1,6 +1,8 @@
 #1IMPORTANT NOTES!!!
 #1. negative numbers are blacks and positive numbers are whites lowercase white uppercase black
 import re
+
+
 listp= [0, 0, 0, 0, 0, 0, 0, 0,
         -0.5, -0.5, -0.5, -0.5, -0.5, -0.5, -0.5, -0.5,
         -0.1, -0.1, -0.2, -0.3, -0.3, -0.2, -0.1, -0.1,
@@ -69,6 +71,7 @@ UNIONNOK = [0] * 64
 UNIONK = [0] * 64
 tempvar = 0
 eval = 0
+modified_string = ''.join([char for char in FEN])
 def empty_black(squarenum):
   if UNIONK[squarenum] < 0:
     return False
@@ -1521,3 +1524,4 @@ def minimax(startingFEN, turntype, depth):
   for i in range(0, depth):
     if i == 0:
       EVALTREE.append(layer(startingFEN, turntype))
+print(bestmovenobrain(FEN, turn))
