@@ -1,8 +1,5 @@
-#1IMPORTANT NOTES!!!
-#1. negative numbers are blacks and positive numbers are whites lowercase white uppercase black
 import re
-
-
+import math
 listp= [0, 0, 0, 0, 0, 0, 0, 0,
         -0.5, -0.5, -0.5, -0.5, -0.5, -0.5, -0.5, -0.5,
         -0.1, -0.1, -0.2, -0.3, -0.3, -0.2, -0.1, -0.1,
@@ -71,7 +68,6 @@ UNIONNOK = [0] * 64
 UNIONK = [0] * 64
 tempvar = 0
 eval = 0
-modified_string = ''.join([char for char in FEN])
 def empty_black(squarenum):
   if UNIONK[squarenum] < 0:
     return False
@@ -82,14 +78,6 @@ def empty_white(squarenum):
     return False
   else:
     return True
-def iterate_string(str, output):
-  output = ''
-  for char in reversed(str):
-    if char.isnumeric():
-        output += char
-    else:
-        break
-  output = output[::-1]
 def empty(squarenum):
   if UNIONK[squarenum] != 0:
     return False
@@ -299,7 +287,7 @@ def findLegal(inputFEN, turntype):
   for i in range(0, len(PAWNS)-1, 1): 
     if turntype == 'w':
       if PAWNS[i] > 0:
-        if empty(i-8):
+        if i-8>0 and empty(i-8):
           legalMoves.append('P'+str(i+1)+'P'+str(i-7))
         if i-7 > 0 and not empty_black(i-7) and i%8 != 0:
           legalMoves.append('P'+str(i+1)+'P'+str(i-6))
@@ -309,7 +297,7 @@ def findLegal(inputFEN, turntype):
           legalMoves.append('P'+str(i+1)+'P'+str(i-15))
     elif turntype == 'b':
       if PAWNS[i] < 0:
-        if empty(i+8):
+        if i+8<64 and empty(i+8):
           legalMoves.append('p'+str(i+1)+'p'+str(i+9))
         if i+7 < 64 and not empty_white(i+7) and i%8 != 1: 
           legalMoves.append('p'+str(i+1)+'p'+str(i+8))
@@ -587,7 +575,7 @@ def findLegal(inputFEN, turntype):
           if empty_white(j) and empty_black(j) and j%8 != 0:
             pass
           else:
-           if not empty_white(j): 
+           if not empty_white(j):
             possible_moves_3 = possible_moves_3[:index]
             break
            elif not empty_black(j) or j%8 == 0:
@@ -780,35 +768,6 @@ def findLegal(inputFEN, turntype):
       templists.append(legalMoves[i])
   for i in templists:
     legalMoves.remove(i)
-  if turntype == 'w':
-    for move in legalMoves:
-      for i in range(len(move)):
-        if move[i].isalpha() and i !=1:
-          futmove = move[:i]
-          remmove = move[i:]
-      piecename = move[:1]
-      indexnum = int(remmove[1:])
-      orig_index = int(futmove[1:])
-      if piecename == 'P' and (indexnum//8)==0:
-        legalMoves.remove(move)
-        legalMoves.append(futmove + 'N' + str(indexnum))
-        legalMoves.append(futmove + 'R' + str(indexnum)) 
-        legalMoves.append(futmove + 'Q' + str(indexnum))
-        legalMoves.append(futmove + 'B' + str(indexnum))
-  if turntype == 'b':
-    for move in legalMoves:
-      for i in range(len(move)):
-        if move[i].isalpha() and i !=1:
-          futmove = move[:i]
-          remmove = move[i:]
-      piecename = move[:1]
-      indexnum = int(remmove[1:])
-      if piecename == 'p' and (indexnum//8)==7:
-        legalMoves.remove(move)
-        legalMoves.append(remmove + 'n' + str(indexnum))
-        legalMoves.append(remmove + 'r' + str(indexnum)) 
-        legalMoves.append(remmove + 'q' + str(indexnum))
-        legalMoves.append(remmove + 'b' + str(indexnum))
   return legalMoves
 def findAttacked(inputFEN, turntype):
   global AttackedMoves
@@ -1403,41 +1362,7 @@ def evaluatechange(iiiFEN, turnn, move):
   moveFEN = moveFEN[:]
   moveFEN = moveFEN[:indexnum-1] + piecename + moveFEN[indexnum:]
   moveFEN = re.sub(r'l+', lambda match: str(len(match.group())), moveFEN)
-  print(moveFEN)
-  if findLegal(moveFEN, c) == []:
-    return evaluate(moveFEN)+10000
-  else:
-    return evaluate(moveFEN)
-def isCheckmate(startingFEN, move, turntype):
-  if turntype ==  'w':
-    turni = 'b'
-    for i in KINGS:
-      if i>0:
-        king = KINGS.index(i)
-        break
-  elif turntype == 'b':
-    turni = 'w'
-    for i in KINGS:
-      if i<0:
-        king = KINGS.index(i)
-        break
-  for i in range(len(move)):
-    if move[i].isalpha() and i !=1:
-      futmove = move[:i]
-      remmove = move[i:]
-  ball= re.sub(r'(\d+)', lambda match: 'l' * int(match.group()), iiiFEN)
-  moveFEN = ball.replace('/', '')
-  piecename = move[:1]
-  indexnum = int(remmove[1:])
-  orig_index = int(futmove[1:])
-  moveFEN = moveFEN[:orig_index-1] + 'l' + moveFEN[orig_index:]
-  moveFEN = moveFEN[:]
-  moveFEN = moveFEN[:indexnum-1] + piecename + moveFEN[indexnum:]
-  moveFEN = re.sub(r'l+', lambda match: str(len(match.group())), moveFEN)
-  if findLegal(moveFEN,turni) == []:
-    return True
-  else:
-    return False
+  return evaluate(moveFEN)
 def isLegal(startingFEN, move, turntype):
   convert(startingFEN)
   king =0
@@ -1466,15 +1391,15 @@ def isLegal(startingFEN, move, turntype):
   moveFEN = moveFEN[:]
   moveFEN = moveFEN[:indexnum-1] + piecename + moveFEN[indexnum:]
   moveFEN = re.sub(r'l+', lambda match: str(len(match.group())), moveFEN)
-  ballslist = findAttacked(moveFEN, turni)
+  xlist = findAttacked(moveFEN, turni)
   if not piecename == 'k' and not piecename == 'K':
-    for i in ballslist:
+    for i in xlist:
       if int(i) == king+1:
         return False
     return True
   else: 
     king = indexnum
-    for i in ballslist:
+    for i in xlist:
       if int(i) == king:
         return False
     return True
@@ -1485,12 +1410,13 @@ def bestmovenobrain(startingFEN, turntype):
   elif turntype == 'b':
     beta = evaluate(startingFEN)
   legality = findLegal(startingFEN, turntype)
-  print(legality)
   for i in legality:
-    bum =evaluatechange(startingFEN, turntype, i)
-    firstlayereval.append(bum)
-  print(firstlayereval)
-  return legality[firstlayereval.index(max(firstlayereval))]
+    bbb =evaluatechange(startingFEN, turntype, i)
+    firstlayereval.append(bbb)
+  if turntype == 'w':
+    return legality[firstlayereval.index(max(firstlayereval))]
+  elif turntype == 'b':
+    return legality[firstlayereval.index(min(firstlayereval))]
 def layer(startingFEN, turntype):
   firstlayereval = []
   if turntype == 'w':
@@ -1499,8 +1425,8 @@ def layer(startingFEN, turntype):
     beta = evaluate(startingFEN)
   legality = findLegal(startingFEN, turntype)
   for i in legality:
-    bum =evaluatechange(startingFEN, turntype, i)
-    firstlayereval.append(bum)
+    bbb =evaluatechange(startingFEN, turntype, i)
+    firstlayereval.append(bbb)
   return firstlayereval
 def changethefen(iiiFEN, move):
   for i in range(len(move)):
@@ -1524,4 +1450,27 @@ def minimax(startingFEN, turntype, depth):
   for i in range(0, depth):
     if i == 0:
       EVALTREE.append(layer(startingFEN, turntype))
-print(bestmovenobrain(FEN, turn))
+def LAGnormal(move, startingFEN, turntype): 
+  for i in range(len(move)):
+    if move[i].isalpha() and i !=1:
+      futmove = move[i:]
+  output = futmove[0]+'x'
+  num=  int(futmove[1:])
+  if num%8 == 1:
+    output += 'a'
+  if num%8 == 2:
+    output += 'b'
+  if num%8 == 3:
+    output += 'c'
+  if num%8 == 4:
+    output += 'd'
+  if num%8 == 5:
+    output += 'e'
+  if num%8 == 6:
+    output += 'f'
+  if num%8 == 7:
+    output += 'g'
+  if num%8 == 0:
+    output += 'h'
+  output += str(8-num//8)
+  return output
