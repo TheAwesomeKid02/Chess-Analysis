@@ -43,6 +43,7 @@ function addPiece(color, piece, square) {
 	chessmen.style.height = '100%';
 	chessmen.style.width = '100%';
 	chessmen.style.cursor = 'pointer';
+	chessmen.style.zIndex = '5';
 	squares[square].appendChild(chessmen);
 }
 
@@ -120,50 +121,32 @@ numbers.map(Number);
 
 // Highlight the best move squares in red
 squares[numbers[0] - 1].style.backgroundColor = 'red';
-squares[numbers[1] - 1].style.backgroundColor = 'red';
+squares[numbers[1] - 1].style.backgroundColor = 'blue';
+
+let x0 = squares[numbers[0]-1].offsetLeft;
+let x1 = squares[numbers[1]-1].offsetLeft;
 
 
-const canvas = document.createElement('canvas');
-canvas.width = 300; // Set the canvas width
-canvas.height = 100; // Set the canvas height
-canvas.style.position = 'absolute'; // Position the canvas absolutely
-canvas.style.top = '0'; // Adjust the top position as needed
-canvas.style.left = '0'; // Adjust the left position as needed
-document.body.appendChild(canvas); // Append the canvas to the DOM
+let arrow = document.createElement('div');
+let angle = Math.atan((((numbers[0]-1) % 8)+1)/(((numbers[1]-1) % 8)+1));
 
-const ctx = canvas.getContext('2d');
-ctx.strokeStyle = 'red'; // Arrow color
-ctx.lineWidth = 2; // Arrow line width
-
-// Define the starting and ending coordinates for the arrow
-const startX = squares[numbers[0] - 1].offsetLeft + squares[numbers[0] - 1].offsetWidth / 2;
-const startY = squares[numbers[0] - 1].offsetTop + squares[numbers[0] - 1].offsetHeight / 2;
-const endX = squares[numbers[1] - 1].offsetLeft + squares[numbers[1] - 1].offsetWidth / 2;
-const endY = squares[numbers[1] - 1].offsetTop + squares[numbers[1] - 1].offsetHeight / 2;
-
-// Draw the arrow line
-ctx.beginPath();
-ctx.moveTo(startX, startY);
-ctx.lineTo(endX, endY);
-ctx.stroke();
-
-// Draw the arrowhead (you can customize the arrowhead shape)
-const arrowSize = 10; // Adjust the arrowhead size
-const angle = Math.atan2(endY - startY, endX - startX);
-ctx.beginPath();
-ctx.moveTo(endX, endY);
-ctx.lineTo(endX - arrowSize * Math.cos(angle - Math.PI / 6), endY - arrowSize * Math.sin(angle - Math.PI / 6));
-ctx.lineTo(endX - arrowSize * Math.cos(angle + Math.PI / 6), endY - arrowSize * Math.sin(angle + Math.PI / 6));
-ctx.closePath();
-ctx.fill();
-
-// Ensure the canvas is positioned above other elements
-canvas.style.zIndex = '9999'; // Set a high z-index value
-
-if(parseInt(eval.textContent) > 0) {
-	eval.textContent = `White is winning by ${eval.textContent} points.`;
-} else if(parseInt(eval.textContent) < 0) {
-		eval.textContent = `Black is winning by ${Math.abs(parseInt(eval.textContent))} points.`;
-} else {
-		eval.textContent = 'Both white and black are equal.';
+if(x0 < x1) {
+	angle += Math.PI/2;
+} else if(x0 > x1) {
+	angle -= Math.PI/2;
 }
+
+arrow.style.width = '0';
+arrow.style.height = '0';
+arrow.style.borderLeft = '10px solid transparent';
+arrow.style.borderRight = '10px solid transparent';
+arrow.style.borderBottom = '40px solid rgba(0, 123, 255, 0.7)';
+arrow.style.position = 'absolute';
+arrow.style.left = '50%';
+arrow.style.bottom = '25%';
+arrow.style.transform = `translateX(-50%) rotate(${angle}rad)`;
+arrow.style.zIndex = '999';
+
+console.log(angle)
+
+squares[numbers[0]-1].appendChild(arrow);

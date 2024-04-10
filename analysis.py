@@ -157,13 +157,6 @@ def convert(inputFEN):
             UNIONNOK[index] = 9
             UNIONK[index] = 9
 def returnconvert(inputFEN):
-          PAWNS = [0] * 64
-          KNIGHTS = [0] * 64
-          BISHOPS = [0] * 64
-          ROOKS = [0] * 64 
-          KINGS = [0] * 64
-          QUEENS = [0] * 64
-          UNIONNOK = [0] * 64
           UNIONK = [0] * 64
           modified_string = ''.join([char for char in inputFEN])
           for char in modified_string:
@@ -178,50 +171,28 @@ def returnconvert(inputFEN):
               FENCHANGE.append(0)
           for index, item in enumerate(FENCHANGE):
                 if item == 'r':
-                    ROOKS[index] = -5
-                    UNIONNOK[index] = -5
                     UNIONK[index] = -5
                 elif item == 'R':
-                    ROOKS[index] = 5
-                    UNIONNOK[index] = 5
                     UNIONK[index] = 5
                 elif item == 'n':
-                    KNIGHTS[index] = -3
-                    UNIONNOK[index] = -3
                     UNIONK[index] = -3
                 elif item == 'N':
-                    KNIGHTS[index] = 3
-                    UNIONNOK[index] = 3
                     UNIONK[index] = 3
                 elif item == 'b':
-                    BISHOPS[index] = -4
-                    UNIONNOK[index] = -4
                     UNIONK[index] = -4
                 elif item == 'B':
-                    BISHOPS[index] = 4
-                    UNIONNOK[index] = 4
                     UNIONK[index] = 4
                 elif item == 'p':
-                    PAWNS[index] = -1
-                    UNIONNOK[index] = -1
                     UNIONK[index] = -1
                 elif item == 'P':
-                    PAWNS[index] = 1
-                    UNIONNOK[index] = 1
                     UNIONK[index] = 1
                 elif item == 'k':
-                    KINGS[index] = -10
                     UNIONK[index] = -10
                 elif item == 'K':
-                    KINGS[index] = 10
                     UNIONK[index] = 10
                 elif item == 'q':
-                    QUEENS[index] = -9
-                    UNIONNOK[index] = -9
                     UNIONK[index] = -9
                 elif item == 'Q':
-                    QUEENS[index] = 9
-                    UNIONNOK[index] = 9
                     UNIONK[index] = 9
           return UNIONK
 def findLegal(inputFEN, turntype): 

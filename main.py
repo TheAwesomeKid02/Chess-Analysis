@@ -27,7 +27,7 @@ def index_post():
   turn = FEN[len(FEN_new)+1:]
   turn = re.sub(r'\s.*', '', turn)
   firstlayereval = []
-  best_move = analysis.LAGnormal(analysis.bestmovenobrain(FEN_new, turn), FEN_new, turn)
+  best_move = analysis.bestmovenobrain(FEN_new, turn)
   position = analysis.returnconvert(FEN_new)
   eval = analysis.evaluate(FEN_new)
   modified_string = ''.join([char for char in FEN])

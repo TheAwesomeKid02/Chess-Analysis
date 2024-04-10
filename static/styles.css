@@ -93,3 +93,16 @@ form {
 textarea:focus {
 	outline: none;
 }
+
+.arrow {
+		width: 0;
+		height: 0;
+		border-left: 20px solid transparent;
+		border-right: 20px solid transparent;
+		border-bottom: 40px solid #617bff;
+		/* Adjust position as needed */
+		position: absolute;
+		top: 100px;
+		left: 50%;
+		transform: translateX(-50%);
+}
